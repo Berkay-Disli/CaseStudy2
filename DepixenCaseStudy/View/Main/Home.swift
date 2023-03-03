@@ -21,23 +21,49 @@ struct Home: View {
                                  .init(color: .purple, title: "Item 3", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in.", image: "try3", author: "author3"),
                                  .init(color: .purple, title: "Item 4", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in.", image: "try4", author: "author4"),
                                  .init(color: .purple, title: "Item 5", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in.", image: "try5", author: "author5"),
+                                 .init(color: .purple, title: "Item 6", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in.", image: "try6", author: "author6"),
+                                 .init(color: .purple, title: "Item 1", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in.", image: "try1", author: "author1"),
+                                 .init(color: .purple, title: "Item 2", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in.", image: "try2", author: "author2"),
+                                 .init(color: .purple, title: "Item 3", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in.", image: "try3", author: "author3"),
+                                 .init(color: .purple, title: "Item 4", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in.", image: "try4", author: "author4"),
+                                 .init(color: .purple, title: "Item 5", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in.", image: "try5", author: "author5"),
                                  .init(color: .purple, title: "Item 6", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in.", image: "try6", author: "author6")]
     
     var body: some View {
         NavigationView {
             ScrollView {
-                LazyVGrid(columns: navVM.gridChoice == .twoColumns ? twoColumns:threeColumns, spacing: 0) {
-                    ForEach(cardItems) { item in
-                        CardView(color: item.color, title: item.title, description: item.description, image: item.image)
+                LazyVStack(spacing: 0) {
+                    HeaderProfilesView()
+                    
+                    Divider()
+                    
+                    LazyVGrid(columns: navVM.gridChoice == .twoColumns ? twoColumns:threeColumns, spacing: 12) {
+                        
+                        CardView(color: .blue, title: "ahah", description: "akjdjankdjlas", image: "try6")
+                        
+                        ForEach(cardItems.indices) { item in
+                            // MARK: problem is 1...20 vs cardItems
+                            #warning("Fix the animation issue")
+                            /*
+                            CardView(color: item.color, title: item.title, description: item.description, image: item.image)
+                             */
+                            CardView(color: cardItems[item].color, title: cardItems[item].title, description: cardItems[item].description, image: cardItems[item].image)
+                            /*
+                            RoundedRectangle(cornerRadius: 10).fill(.cyan)
+                                .frame(height: navVM.gridChoice == .twoColumns ? 260:170)
+                             */
+                        }
                     }
+                    .padding()
+                    .padding(.bottom, 46)
                 }
-                .padding([.bottom, .horizontal])
-                .padding(.bottom, 46)
+                
             }
+            
             .navigationTitle("Home")
             .toolbar {
                 // To add another function, i could use this area as well. for example:
-                ToolbarItem(placement: .navigationBarTrailing) {
+                ToolbarItem(placement: .navigationBarLeading) {
                     Button {
                         withAnimation(.easeInOut) {
                             navVM.toggleGridChoice()
@@ -47,6 +73,16 @@ struct Home: View {
                             .foregroundColor(Color("pri"))
                     }
                     
+                }
+                
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        
+                    } label: {
+                        Image(systemName: "plus")
+                            .foregroundColor(Color("pri"))
+                    }
+
                 }
             }
         }
