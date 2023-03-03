@@ -17,6 +17,8 @@
 		23BA252729B255D9005E9022 /* Tabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BA252629B255D9005E9022 /* Tabs.swift */; };
 		23BA252929B25627005E9022 /* NavigationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BA252829B25627005E9022 /* NavigationViewModel.swift */; };
 		23BA252B29B25B18005E9022 /* GridChoices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BA252A29B25B18005E9022 /* GridChoices.swift */; };
+		23BA252D29B25E70005E9022 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BA252C29B25E70005E9022 /* CardView.swift */; };
+		23BA252F29B25E7D005E9022 /* CardItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BA252E29B25E7D005E9022 /* CardItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		23BA252629B255D9005E9022 /* Tabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tabs.swift; sourceTree = "<group>"; };
 		23BA252829B25627005E9022 /* NavigationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewModel.swift; sourceTree = "<group>"; };
 		23BA252A29B25B18005E9022 /* GridChoices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridChoices.swift; sourceTree = "<group>"; };
+		23BA252C29B25E70005E9022 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		23BA252E29B25E7D005E9022 /* CardItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +112,7 @@
 			children = (
 				23BA252629B255D9005E9022 /* Tabs.swift */,
 				23BA252A29B25B18005E9022 /* GridChoices.swift */,
+				23BA252E29B25E7D005E9022 /* CardItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -115,6 +120,7 @@
 		23BA251B29B253B5005E9022 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				23BA252C29B25E70005E9022 /* CardView.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -206,6 +212,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				23BA252B29B25B18005E9022 /* GridChoices.swift in Sources */,
+				23BA252D29B25E70005E9022 /* CardView.swift in Sources */,
+				23BA252F29B25E7D005E9022 /* CardItem.swift in Sources */,
 				23BA252529B254CE005E9022 /* TabManager.swift in Sources */,
 				23BA250C29B25392005E9022 /* ContentView.swift in Sources */,
 				23BA251F29B2542F005E9022 /* Home.swift in Sources */,
