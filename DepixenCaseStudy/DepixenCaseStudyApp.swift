@@ -12,6 +12,7 @@ struct DepixenCaseStudyApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(NavigationViewModel())
         }
     }
 }
