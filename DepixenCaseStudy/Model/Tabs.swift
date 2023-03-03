@@ -8,12 +8,14 @@
 import Foundation
 
 enum Tabs: String, CaseIterable {
-    case home, settings
+    case home, newCard, settings
     
     var title: String {
         switch self {
         case .home:
             return "Home"
+        case .newCard:
+            return "New Card"
         case .settings:
             return "Settings"
         }
@@ -23,6 +25,8 @@ enum Tabs: String, CaseIterable {
         switch self {
         case .home:
             return "house"
+        case .newCard:
+            return "plus.app"
         case .settings:
             return "gearshape"
         }

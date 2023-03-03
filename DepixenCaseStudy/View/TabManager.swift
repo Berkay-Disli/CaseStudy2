@@ -17,6 +17,9 @@ struct TabManager: View {
                 case .home:
                     Home()
                         .transition(AnyTransition.opacity.animation(.easeInOut))
+                case .newCard:
+                    AddCardView()
+                        .transition(AnyTransition.opacity.animation(.easeInOut))
                 case .settings:
                     Settings()
                         .transition(AnyTransition.opacity.animation(.easeInOut))

@@ -38,20 +38,11 @@ struct Home: View {
                     Divider()
                     
                     LazyVGrid(columns: navVM.gridChoice == .twoColumns ? twoColumns:threeColumns, spacing: 12) {
-                        
-                        CardView(color: .blue, title: "ahah", description: "akjdjankdjlas", image: "try6")
-                        
                         ForEach(cardItems.indices) { item in
-                            // MARK: problem is 1...20 vs cardItems
-                            #warning("Fix the animation issue")
-                            /*
-                            CardView(color: item.color, title: item.title, description: item.description, image: item.image)
-                             */
+                            /// On tap gesture, create a bigger view that shows the same card but the size if bigger.
+                            /// Make it on another swift file for easy reading.
+                            /// Establish a smooth expanding view animation using matched geometry effect.
                             CardView(color: cardItems[item].color, title: cardItems[item].title, description: cardItems[item].description, image: cardItems[item].image)
-                            /*
-                            RoundedRectangle(cornerRadius: 10).fill(.cyan)
-                                .frame(height: navVM.gridChoice == .twoColumns ? 260:170)
-                             */
                         }
                     }
                     .padding()
