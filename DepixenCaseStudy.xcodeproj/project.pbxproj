@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2303E0D629B297BA00775074 /* HeaderProfilesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2303E0D529B297BA00775074 /* HeaderProfilesView.swift */; };
+		233F31E929B3E9F300CA060C /* PresentingCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233F31E829B3E9F300CA060C /* PresentingCardView.swift */; };
 		239CEEE929B35D3300A78DEA /* AddCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239CEEE829B35D3300A78DEA /* AddCardView.swift */; };
 		23BA250A29B25392005E9022 /* DepixenCaseStudyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BA250929B25392005E9022 /* DepixenCaseStudyApp.swift */; };
 		23BA250C29B25392005E9022 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BA250B29B25392005E9022 /* ContentView.swift */; };
@@ -25,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		2303E0D529B297BA00775074 /* HeaderProfilesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderProfilesView.swift; sourceTree = "<group>"; };
+		233F31E829B3E9F300CA060C /* PresentingCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentingCardView.swift; sourceTree = "<group>"; };
 		239CEEE829B35D3300A78DEA /* AddCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardView.swift; sourceTree = "<group>"; };
 		23BA250629B25392005E9022 /* DepixenCaseStudy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DepixenCaseStudy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23BA250929B25392005E9022 /* DepixenCaseStudyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepixenCaseStudyApp.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				23BA252C29B25E70005E9022 /* CardView.swift */,
+				233F31E829B3E9F300CA060C /* PresentingCardView.swift */,
 				2303E0D529B297BA00775074 /* HeaderProfilesView.swift */,
 			);
 			path = Utils;
@@ -219,6 +222,7 @@
 			files = (
 				23BA252B29B25B18005E9022 /* GridChoices.swift in Sources */,
 				23BA252D29B25E70005E9022 /* CardView.swift in Sources */,
+				233F31E929B3E9F300CA060C /* PresentingCardView.swift in Sources */,
 				239CEEE929B35D3300A78DEA /* AddCardView.swift in Sources */,
 				23BA252F29B25E7D005E9022 /* CardItem.swift in Sources */,
 				23BA252529B254CE005E9022 /* TabManager.swift in Sources */,

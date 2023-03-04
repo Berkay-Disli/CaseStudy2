@@ -31,29 +31,41 @@ struct Home: View {
     
     var body: some View {
         NavigationView {
-            ScrollView {
-                LazyVStack(spacing: 0) {
-                    HeaderProfilesView()
-                    
-                    Divider()
-                    
-                    LazyVGrid(columns: navVM.gridChoice == .twoColumns ? twoColumns:threeColumns, spacing: 12) {
-                        ForEach(cardItems.indices) { item in
-                            /// On tap gesture, create a bigger view that shows the same card but the size if bigger.
-                            /// Make it on another swift file for easy reading.
-                            /// Establish a smooth expanding view animation using matched geometry effect.
-                            CardView(color: cardItems[item].color, title: cardItems[item].title, description: cardItems[item].description, image: cardItems[item].image)
+            ZStack(content: {
+                ScrollView {
+                    LazyVStack(spacing: 0) {
+                        HeaderProfilesView()
+                        
+                        Divider()
+                        
+                        LazyVGrid(columns: navVM.gridChoice == .twoColumns ? twoColumns:threeColumns, spacing: 12) {
+                            ForEach(cardItems.indices, id:\.self) { item in
+                                #warning("read below")
+                                /// On tap gesture, create a bigger view that shows the same card but the size if bigger.
+                                /// Make it on another swift file for easy reading.
+                                /// Establish a smooth expanding view animation using matched geometry effect.
+                                CardView(color: cardItems[item].color, title: cardItems[item].title, description: cardItems[item].description, image: cardItems[item].image)
+                            }
                         }
+                        .padding()
+                        .padding(.bottom, 46)
                     }
-                    .padding()
-                    .padding(.bottom, 46)
                 }
-            }
+                /*
+                ZStack {
+                    /*
+                    Rectangle().fill(.ultraThinMaterial)
+                        .ignoresSafeArea()
+                     */
+                    CardView(color: .purple, title: "Title", description: "Description", image: "try4")
+                }
+                */
+            })
             
             .navigationTitle("Home")
             .toolbar {
                 // To add another function, i could use this area as well. for example:
-                ToolbarItem(placement: .navigationBarLeading) {
+                ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
                         withAnimation(.easeInOut) {
                             navVM.toggleGridChoice()
@@ -65,14 +77,14 @@ struct Home: View {
                     
                 }
                 
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        
-                    } label: {
-                        Image(systemName: "plus")
-                            .foregroundColor(Color("pri"))
-                    }
-
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Circle().stroke(.pink, lineWidth: 2)
+                        .frame(width: 25)
+                        .overlay {
+                            Image(systemName: "person")
+                                .font(.system(size: 10))
+                                .foregroundColor(.pink)
+                        }
                 }
             }
         }

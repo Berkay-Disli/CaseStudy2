@@ -118,17 +118,11 @@ struct AddCardView: View {
                 Button {
                     
                 } label: {
-                    Capsule().fill(color == Color("pri") ? .black:color)
-                        .frame(height: 50)
-                        .overlay {
-                            Text("Post the Card")
-                                .font(.title2)
-                                .foregroundColor(.white)
-                        }
-                        
-                        
+                    Text("Post the Card")
+                        .font(.title)
+                        .foregroundColor(color)
                 }
-                .padding(.top, 8)
+                .padding(.top, 12)
             }
             .padding(.horizontal)
             .vAlign(.top)

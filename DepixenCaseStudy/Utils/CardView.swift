@@ -32,7 +32,7 @@ struct CardView: View {
                             .fontWeight(.medium)
                             .foregroundColor(Color("pri"))
                             .padding([.leading, .top], 7)
-                            
+                            .padding(.bottom, navVM.gridChoice == .twoColumns ? 4:1)
                         
                         Rectangle().colorInvert()
                             .frame(height: navVM.gridChoice == .twoColumns ? 70:48)
@@ -47,9 +47,13 @@ struct CardView: View {
                         
                         Image(image)
                             .resizable()
-                            .scaledToFit()
-                            .frame(width: .infinity, height: navVM.gridChoice == .twoColumns ? 114:73)
+                            .scaledToFill()
+                            .frame(width: navVM.gridChoice == .twoColumns ? 160:100, height: navVM.gridChoice == .twoColumns ? 130:78)
+                            
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                            .clipped()
                             .hAlign(.center)
+                            .padding(.top, 4)
                         
                         Text("author")
                             .font(.system(size: navVM.gridChoice == .twoColumns ? 9:7))
