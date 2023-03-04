@@ -6,12 +6,20 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct AddCardView: View {
     @State private var color: Color = Color("pri")
     @State private var title = ""
-    @State private var description = "New Description"
+    @State private var description = ""
     @State private var image: Image?
+    
+    // image
+    @State private var selectedItem = [PhotosPickerItem]()
+    @State private var data: Data?
+    
+    // alerts
+    @State private var deleteCardInfoAlertIsShown = false
     
     var body: some View {
         NavigationView {
@@ -23,19 +31,82 @@ struct AddCardView: View {
                 
                 RoundedRectangle(cornerRadius: 10).stroke(color, lineWidth: 2)
                     .frame(height: 500)
+                    .background(content: {
+                        RoundedRectangle(cornerRadius: 10).fill(.white)
+                    })
                     .overlay {
                         VStack {
-                            TextField("New Title", text: $title.max(22))
-                                .font(.title)
-                                .foregroundColor(color)
-                                .autocorrectionDisabled()
-                                //.border(.red)
-                                .background(.white)
-                                
+                            HStack {
+                                TextField("New Title", text: $title.max(17))
+                                    .font(.title)
+                                    .fontWeight(.medium)
+                                    .foregroundColor(color)
+                                    .autocorrectionDisabled()
+
+                                ColorPicker("", selection: $color)
+                                    .frame(width: 30)
+                            }
                             
-                            TextEditor(text: $description)
-                                .border(.cyan)
-                                .frame(height: 200)
+                            // TextEditor
+                            ZStack {
+                                if self.description.isEmpty {
+                                    TextEditor(text: .constant("New Description"))
+                                            .font(.body)
+                                            .foregroundColor(.gray)
+                                            .disabled(true)
+                                            
+                                }
+                                TextEditor(text: $description)
+                                    .font(.body)
+                                    .opacity(self.description.isEmpty ? 0.25 : 1)
+                                    
+                            }
+                            .overlay(content: {
+                                RoundedRectangle(cornerRadius: 10).stroke(Color(uiColor: .lightGray))
+                            })
+                            .frame(height: 170)
+                            
+                            // Image Selection
+                            if let data {
+                                if let image = UIImage(data: data) {
+                                    Image(uiImage: image)
+                                        .resizable()
+                                        
+                                        .scaledToFill()
+                                        .frame(height: 227)
+                                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                                        .clipped()
+                                        
+                                }
+                            } else {
+                                PhotosPicker(selection: $selectedItem, maxSelectionCount: 1, matching: .images) {
+                                    RoundedRectangle(cornerRadius: 10).stroke(Color(uiColor: .lightGray))
+                                        .frame(height: 227)
+                                        .overlay {
+                                            HStack {
+                                                Image(systemName: "plus")
+                                                Text("Add Image")
+                                            }
+                                            .font(.title)
+                                            .foregroundColor(Color(uiColor: .lightGray))
+                                        }
+                                }.onChange(of: selectedItem) { newValue in
+                                    guard let item = selectedItem.first else { return }
+                                    item.loadTransferable(type: Data.self) { result in
+                                        switch result {
+                                        case .success(let data):
+                                            guard let data else { return }
+                                            self.data = data
+                                        case .failure(let failure):
+                                            print(failure)
+                                        }
+                                    }
+                                }
+                            }
+                            
+                            Text("author")
+                                .font(.system(size: 14))
+
                         }
                         .vAlign(.top)
                         .padding([.horizontal, .top])
@@ -43,8 +114,21 @@ struct AddCardView: View {
                 
                 
                 
-                
-                
+                // Post Card
+                Button {
+                    
+                } label: {
+                    Capsule().fill(color == Color("pri") ? .black:color)
+                        .frame(height: 50)
+                        .overlay {
+                            Text("Post the Card")
+                                .font(.title2)
+                                .foregroundColor(.white)
+                        }
+                        
+                        
+                }
+                .padding(.top, 8)
             }
             .padding(.horizontal)
             .vAlign(.top)
@@ -52,12 +136,23 @@ struct AddCardView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        
+                        deleteCardInfoAlertIsShown.toggle()
                     } label: {
                         Image(systemName: "xmark")
                             .foregroundColor(Color("pri"))
                     }
-
+                    .alert("Do you want to delete the card details?", isPresented: $deleteCardInfoAlertIsShown) {
+                        Button(role: .destructive) {
+                            withAnimation(.easeInOut) {
+                                self.title = ""
+                                self.description = ""
+                                self.color = Color("pri")
+                                self.data = nil
+                            }
+                        } label: {
+                            Text("Delete")
+                        }
+                    }
                 }
             }
         }

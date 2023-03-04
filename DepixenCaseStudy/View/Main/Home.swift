@@ -48,7 +48,6 @@ struct Home: View {
                     .padding()
                     .padding(.bottom, 46)
                 }
-                
             }
             
             .navigationTitle("Home")
@@ -60,7 +59,7 @@ struct Home: View {
                             navVM.toggleGridChoice()
                         }
                     } label: {
-                        Image(systemName: "rectangle.grid.3x2.fill")
+                        Image(systemName: "rectangle.grid.\(navVM.gridChoice == .twoColumns ? 2:3)x2.fill")
                             .foregroundColor(Color("pri"))
                     }
                     
