@@ -16,6 +16,8 @@ struct Home: View {
                                     GridItem(.flexible(), spacing: 12),
                                     GridItem(.flexible())]
     
+    @State private var expandCard = true
+    
     let cardItems: [CardItem] = [.init(color: .purple, title: "Item 1", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in.", image: "try1", author: "author1"),
                                  .init(color: .purple, title: "Item 2", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in.", image: "try2", author: "author2"),
                                  .init(color: .purple, title: "Item 3", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in.", image: "try3", author: "author3"),
@@ -45,21 +47,33 @@ struct Home: View {
                                 /// Make it on another swift file for easy reading.
                                 /// Establish a smooth expanding view animation using matched geometry effect.
                                 CardView(color: cardItems[item].color, title: cardItems[item].title, description: cardItems[item].description, image: cardItems[item].image)
+                                    .onTapGesture {
+                                        //withAnimation(.easeInOut) {
+                                            expandCard = true
+                                        //}
+                                    }
                             }
                         }
                         .padding()
                         .padding(.bottom, 46)
                     }
                 }
-                /*
-                ZStack {
-                    /*
-                    Rectangle().fill(.ultraThinMaterial)
-                        .ignoresSafeArea()
-                     */
-                    CardView(color: .purple, title: "Title", description: "Description", image: "try4")
+                
+                if expandCard {
+                        Rectangle().fill(.clear)
+                            .ignoresSafeArea()
+                            .backgroundBlur(radius: 3)
+                            .animation(.easeInOut, value: expandCard)
+                            .transition(.opacity.animation(.easeInOut))
+                            .zIndex(1)
+                         
+                        PresentingCardView(color: .pink, title: "Presenting", description: "Presenting card description is here! Hello there.", image: "try8", expandCard: $expandCard)
+                            .offset(y: -40)
+                            
+                            .transition(.scale.animation(.easeInOut))
+                            .zIndex(2)
+                    
                 }
-                */
             })
             
             .navigationTitle("Home")

@@ -13,6 +13,7 @@ struct PresentingCardView: View {
     let title: String
     let description: String
     let image: String
+    @Binding var expandCard: Bool
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -25,9 +26,15 @@ struct PresentingCardView: View {
             
             
             RoundedRectangle(cornerRadius: 10).stroke(Color("pri"), lineWidth: 2)
+                .overlay(content: {
+                    RoundedRectangle(cornerRadius: 10).fill(.white)
+                        .padding(2)
+                })
                 .background(RoundedRectangle(cornerRadius: 10).fill(.white))
                 .frame(height: 380)
                 .padding(.horizontal).padding(.horizontal)
+                .shadow(color: .gray, radius: 10, x: 0, y: 5)
+                
                 .overlay(alignment: .topLeading) {
                     VStack(alignment: .leading, spacing: 0) {
                         HStack {
@@ -41,7 +48,9 @@ struct PresentingCardView: View {
                                 
                             
                             Button {
-                                
+                                //withAnimation(.easeInOut) {
+                                    expandCard = false
+                                //}
                             } label: {
                                 Image(systemName: "xmark")
                                     .font(.system(size: 20))
@@ -56,7 +65,7 @@ struct PresentingCardView: View {
                         Rectangle().colorInvert()
                             .frame(height: 100)
                             .overlay(alignment: .topLeading, content: {
-                                Text("ahjkdka akjsd ajkdkajkds jasdk ajkdslasd")
+                                Text(description)
                                     .font(.system(size: 15))
                             })
                             .padding(.horizontal, 8)
@@ -89,13 +98,12 @@ struct PresentingCardView: View {
                 
             
         }
-        
     }
 }
 
 struct PresentingCardView_Previews: PreviewProvider {
     static var previews: some View {
-        PresentingCardView(color: .pink, title: "Title", description: "Description", image: "try9")
+        PresentingCardView(color: .pink, title: "Title", description: "Description", image: "try9", expandCard: .constant(true))
             .environmentObject(NavigationViewModel())
     }
 }
