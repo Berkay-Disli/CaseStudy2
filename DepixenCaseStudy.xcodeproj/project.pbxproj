@@ -20,6 +20,7 @@
 		239D0C0529B4D431000017E0 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239D0C0429B4D431000017E0 /* AuthViewModel.swift */; };
 		239D0C0729B4D58A000017E0 /* CustomInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239D0C0629B4D58A000017E0 /* CustomInputView.swift */; };
 		239D0C0929B4D5C3000017E0 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239D0C0829B4D5C3000017E0 /* CustomTextField.swift */; };
+		239D0C0B29B4DC58000017E0 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239D0C0A29B4DC58000017E0 /* OnboardingView.swift */; };
 		23BA250A29B25392005E9022 /* DepixenCaseStudyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BA250929B25392005E9022 /* DepixenCaseStudyApp.swift */; };
 		23BA250C29B25392005E9022 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BA250B29B25392005E9022 /* ContentView.swift */; };
 		23BA250E29B25393005E9022 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23BA250D29B25393005E9022 /* Assets.xcassets */; };
@@ -45,6 +46,7 @@
 		239D0C0429B4D431000017E0 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		239D0C0629B4D58A000017E0 /* CustomInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputView.swift; sourceTree = "<group>"; };
 		239D0C0829B4D5C3000017E0 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		239D0C0A29B4DC58000017E0 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		23BA250629B25392005E9022 /* DepixenCaseStudy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DepixenCaseStudy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23BA250929B25392005E9022 /* DepixenCaseStudyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepixenCaseStudyApp.swift; sourceTree = "<group>"; };
 		23BA250B29B25392005E9022 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 			children = (
 				239D0C0029B4D3F3000017E0 /* Login.swift */,
 				239D0C0229B4D3F9000017E0 /* Register.swift */,
+				239D0C0A29B4DC58000017E0 /* OnboardingView.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -277,6 +280,7 @@
 				23BA250C29B25392005E9022 /* ContentView.swift in Sources */,
 				23BA251F29B2542F005E9022 /* Home.swift in Sources */,
 				23BA252929B25627005E9022 /* NavigationViewModel.swift in Sources */,
+				239D0C0B29B4DC58000017E0 /* OnboardingView.swift in Sources */,
 				23BA252329B254C5005E9022 /* Settings.swift in Sources */,
 				23BA250A29B25392005E9022 /* DepixenCaseStudyApp.swift in Sources */,
 				239D0C0729B4D58A000017E0 /* CustomInputView.swift in Sources */,

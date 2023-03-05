@@ -25,6 +25,7 @@ struct DepixenCaseStudyApp: App {
             ContentView()
                 .preferredColorScheme(.light)
                 .environmentObject(NavigationViewModel())
+                .environmentObject(AuthViewModel())
         }
     }
 }
