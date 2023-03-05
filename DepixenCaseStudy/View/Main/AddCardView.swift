@@ -50,7 +50,6 @@ struct AddCardView: View {
                         }
                     }
                     .overlay {
-                        #warning("When keyboard is on, everything messes up. Try to solve it!")
                         VStack {
                             HStack {
                                 TextField("New Title", text: $title.max(17))

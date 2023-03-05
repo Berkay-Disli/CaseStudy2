@@ -13,8 +13,7 @@ struct ContentView: View {
     
     var body: some View {
         if authVM.userSession != nil {
-            if navVM.onboarding {
-                #warning("Onboarding view is sluggish. Make it appear before the tabmanager")
+            if navVM.onboarding && !authVM.directLogin {
                 OnboardingView(fullname: authVM.userSession?.displayName ?? "user")
                     .transition(AnyTransition.opacity.animation(.easeInOut))
             } else {

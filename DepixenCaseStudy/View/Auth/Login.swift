@@ -52,6 +52,7 @@ struct Login: View {
                     Task {
                         do {
                             try await authVM.signInWithEmailAsync(email: email, password: password)
+                            navVM.disableOnboarding()
                         } catch {
                             await authVM.setError(error)
                         }
@@ -83,6 +84,10 @@ struct Login: View {
                     }
                     .foregroundColor(primaryColor)
                 }
+            }
+            .onAppear {
+                authVM.setDirectLogin(false)
+                navVM.disableOnboarding()
             }
             .padding()
             .background(Color("bg"))

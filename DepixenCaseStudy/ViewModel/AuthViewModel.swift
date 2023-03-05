@@ -17,6 +17,7 @@ class AuthViewModel: ObservableObject {
     @Published var loadingAnimation = false
     @Published var showError = false
     @Published var errorMessage = ""
+    @Published var directLogin = true
     
     init() {
         self.userSession = Auth.auth().currentUser
@@ -159,6 +160,9 @@ class AuthViewModel: ObservableObject {
             print(error.localizedDescription)
             throw error
         }
-        
+    }
+    
+    func setDirectLogin(_ bool: Bool) {
+        directLogin = bool
     }
 }

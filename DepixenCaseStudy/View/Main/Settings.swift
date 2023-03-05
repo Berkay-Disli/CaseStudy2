@@ -9,8 +9,9 @@ import SwiftUI
 
 struct Settings: View {
     @EnvironmentObject var authVM: AuthViewModel
+    @EnvironmentObject var navVM: NavigationViewModel
+    
     var body: some View {
-        #warning("A button needed to sign out!")
         NavigationView {
             VStack {
                 Text("Settings View is here!")
@@ -21,6 +22,8 @@ struct Settings: View {
                     Button {
                         do {
                             try authVM.signOut()
+                            authVM.loadingAnimation = false
+                            navVM.changeNavigationTab(.home)
                         } catch {
                             print(error)
                         }
@@ -37,7 +40,8 @@ struct Settings: View {
 
 struct Settings_Previews: PreviewProvider {
     static var previews: some View {
-        Settings()
+        TabManager()
             .environmentObject(AuthViewModel())
+            .environmentObject(NavigationViewModel())
     }
 }
