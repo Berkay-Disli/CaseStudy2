@@ -111,15 +111,13 @@ class AuthViewModel: ObservableObject {
         do {
             let _ = try await ref.putDataAsync(imageData)
             let result = try await ref.downloadURL()
-            // rel.standardized.absoluteURL?????
-            #warning("Careful with below")
-            let url = result.absoluteURL
+            let imgUrl = result.absoluteString
             
             let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
-            changeRequest?.photoURL = url
+            changeRequest?.photoURL = result
             try await changeRequest?.commitChanges()
             
-            await uploadUserInfoToFirestoreAsync(user: user, email: email, username: username, fullname: fullname, imgUrl: url.absoluteString)
+            await uploadUserInfoToFirestoreAsync(user: user, email: email, username: username, fullname: fullname, imgUrl: imgUrl)
         } catch {
             print(error.localizedDescription)
         }

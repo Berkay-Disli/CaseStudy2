@@ -53,6 +53,7 @@ struct TabManager: View {
                 
                 
             }
+            .ignoresSafeArea(.keyboard, edges: .bottom)
         }
         
     }
