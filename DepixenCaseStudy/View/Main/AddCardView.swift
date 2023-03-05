@@ -35,6 +35,7 @@ struct AddCardView: View {
                         RoundedRectangle(cornerRadius: 10).fill(.white)
                     })
                     .overlay {
+                        #warning("When keyboard is on, everything messes up. Try to solve it!")
                         VStack {
                             HStack {
                                 TextField("New Title", text: $title.max(17))
@@ -48,6 +49,7 @@ struct AddCardView: View {
                             }
                             
                             // TextEditor
+                            #warning("not tappable in actual device sometimes? why")
                             ZStack {
                                 if self.description.isEmpty {
                                     TextEditor(text: .constant("New Description"))
@@ -67,6 +69,8 @@ struct AddCardView: View {
                             .frame(height: 170)
                             
                             // Image Selection
+                            /*
+                            #warning("after image selected, tap to open selection again!")
                             if let data {
                                 if let image = UIImage(data: data) {
                                     Image(uiImage: image)
@@ -103,6 +107,59 @@ struct AddCardView: View {
                                     }
                                 }
                             }
+                            
+                            */
+                            
+                            if let data {
+                                if let image = UIImage(data: data) {
+                                    PhotosPicker(selection: $selectedItem, maxSelectionCount: 1, matching: .images) {
+                                        Image(uiImage: image)
+                                            .resizable()
+                                            
+                                            .scaledToFill()
+                                            .frame(height: 227)
+                                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                                            .clipped()
+                                    }.onChange(of: selectedItem) { newValue in
+                                        guard let item = selectedItem.first else { return }
+                                        item.loadTransferable(type: Data.self) { result in
+                                            switch result {
+                                            case .success(let data):
+                                                guard let data else { return }
+                                                self.data = data
+                                            case .failure(let failure):
+                                                print(failure)
+                                            }
+                                        }
+                                    }
+                                }
+                            } else {
+                                PhotosPicker(selection: $selectedItem, maxSelectionCount: 1, matching: .images) {
+                                    RoundedRectangle(cornerRadius: 10).stroke(Color(uiColor: .lightGray))
+                                        .frame(height: 227)
+                                        .overlay {
+                                            HStack {
+                                                Image(systemName: "plus")
+                                                Text("Add Image")
+                                            }
+                                            .font(.title)
+                                            .foregroundColor(Color(uiColor: .lightGray))
+                                        }
+                                }.onChange(of: selectedItem) { newValue in
+                                    guard let item = selectedItem.first else { return }
+                                    item.loadTransferable(type: Data.self) { result in
+                                        switch result {
+                                        case .success(let data):
+                                            guard let data else { return }
+                                            self.data = data
+                                        case .failure(let failure):
+                                            print(failure)
+                                        }
+                                    }
+                                }
+                            }
+                            
+                            
                             
                             Text("author")
                                 .font(.system(size: 14))

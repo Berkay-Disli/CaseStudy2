@@ -16,7 +16,7 @@ struct Home: View {
                                     GridItem(.flexible(), spacing: 12),
                                     GridItem(.flexible())]
     
-    @State private var expandCard = true
+    @State private var expandCard = false
     
     let cardItems: [CardItem] = [.init(color: .purple, title: "Item 1", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in.", image: "try1", author: "author1"),
                                  .init(color: .purple, title: "Item 2", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in.", image: "try2", author: "author2"),
@@ -64,13 +64,15 @@ struct Home: View {
                             .ignoresSafeArea()
                             .backgroundBlur(radius: 3)
                             .animation(.easeInOut, value: expandCard)
-                            .transition(.opacity.animation(.easeInOut))
+                            .transition(.opacity.animation(.easeInOut(duration: 0.25)))
+                            .onTapGesture {
+                                expandCard = false
+                            }
                             .zIndex(1)
                          
                         PresentingCardView(color: .pink, title: "Presenting", description: "Presenting card description is here! Hello there.", image: "try8", expandCard: $expandCard)
                             .offset(y: -40)
-                            
-                            .transition(.scale.animation(.easeInOut))
+                            .transition(.scale.animation(.easeInOut(duration: 0.25)))
                             .zIndex(2)
                     
                 }
