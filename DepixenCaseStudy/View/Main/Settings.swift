@@ -9,6 +9,7 @@ import SwiftUI
 
 struct Settings: View {
     var body: some View {
+        #warning("A button needed to sign out!")
         Text("Settings")
     }
 }
