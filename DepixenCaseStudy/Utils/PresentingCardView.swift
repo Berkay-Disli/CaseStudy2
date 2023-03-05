@@ -15,6 +15,7 @@ struct PresentingCardView: View {
     let image: String
     @Binding var expandCard: Bool
     
+    #warning("change this to a sheet")
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             

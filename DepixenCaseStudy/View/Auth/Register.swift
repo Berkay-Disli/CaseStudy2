@@ -21,22 +21,48 @@ struct Register: View {
     @EnvironmentObject var navVM: NavigationViewModel
     @Environment(\.dismiss) var dismiss
     
+    enum FocusField: Hashable {
+        case fullname, username, email, password
+    }
+    
+    @FocusState private var focusedField: FocusField?
+    
     var body: some View {
         VStack {
             let primaryColor = Color("pri")
             
+            // MARK: Blank frames to adjust layout to show specific textfield when keyboard is enabled.
+            switch focusedField {
+            case .fullname:
+                Rectangle().fill(.clear)
+                    .frame(height: 220)
+            case .username:
+                Rectangle().fill(.clear)
+                    .frame(height: 180)
+            case .email:
+                Rectangle().fill(.clear)
+                    .frame(height: 30)
+            case .password:
+                EmptyView()
+            case .none:
+                EmptyView()
+            }
+            
             VStack(alignment: .leading) {
-                Text("Get started.")
+                Text("Hello \(fullname)\(fullname.count > 2 ? ".":"")")
+                    .animation(.easeInOut, value: fullname)
                 Text("Create your account.")
                     .foregroundColor(primaryColor)
             }
             .font(.largeTitle).bold()
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.top)
+            .onTapGesture {
+                disableFocusedField()
+            }
             
             VStack(spacing: 40) {
-                #warning("Make so that the user can not register without a profile picture? maybe not.")
-                
+                #warning("Make so that the user can not register without a profile picture?")
                 if let data {
                     if let image = UIImage(data: data) {
                         PhotosPicker(selection: $selectedItem, maxSelectionCount: 1, matching: .images) {
@@ -49,6 +75,9 @@ struct Register: View {
                                     Circle()
                                         .stroke(LinearGradient(colors: [primaryColor, primaryColor, primaryColor, .black], startPoint: .top, endPoint: .bottom), lineWidth: 3)
                                         .frame(width: 140, height: 140)
+                                }
+                                .onTapGesture {
+                                    disableFocusedField()
                                 }
                         }.onChange(of: selectedItem) { newValue in
                             guard let item = selectedItem.first else { return }
@@ -76,6 +105,9 @@ struct Register: View {
                                     .frame(width: 140, height: 140)
                             }
                             .frame(height: 140)
+                            .onTapGesture {
+                                disableFocusedField()
+                            }
                     }.onChange(of: selectedItem) { newValue in
                         guard let item = selectedItem.first else { return }
                         item.loadTransferable(type: Data.self) { result in
@@ -90,12 +122,21 @@ struct Register: View {
                     }
                 }
                 
-                
-                CustomTextField(image: "envelope", placeholder: "email", text: $email, isSecure: false, textContentType: .emailAddress)
-                    .keyboardType(.emailAddress)
-                CustomTextField(image: "person", placeholder: "username", text: $username, isSecure: false, textContentType: .username)
-                CustomTextField(image: "person", placeholder: "fullname", text: $fullname, isSecure: false, textContentType: .name)
-                CustomTextField(image: "lock", placeholder: "password", text: $password, isSecure: true, textContentType: nil)
+                Group {
+                    CustomTextField(image: "person", placeholder: "fullname", text: $fullname, isSecure: false, textContentType: .name)
+                        .focused($focusedField, equals: .fullname)
+                        .textInputAutocapitalization(.characters)
+                    CustomTextField(image: "person", placeholder: "username", text: $username, isSecure: false, textContentType: .username)
+                        .focused($focusedField, equals: .username)
+                    CustomTextField(image: "envelope", placeholder: "email", text: $email, isSecure: false, textContentType: .emailAddress)
+                        .focused($focusedField, equals: .email)
+                        .keyboardType(.emailAddress)
+                    CustomTextField(image: "lock", placeholder: "password", text: $password, isSecure: true, textContentType: nil)
+                        .focused($focusedField, equals: .password)
+                        .autocorrectionDisabled()
+                }
+                .autocorrectionDisabled()
+                .textInputAutocapitalization(.never)
             }
             .padding([.horizontal], 32)
             
@@ -139,10 +180,15 @@ struct Register: View {
                 }
                 .foregroundColor(primaryColor)
             }
-            .toolbar(.hidden, for: .navigationBar)
         }
+        .background(content: {
+            Color.white.ignoresSafeArea()
+                .onTapGesture {
+                    disableFocusedField()
+                }
+        })
+        .toolbar(.hidden)
         .padding()
-        .background(Color("bg"))
         .overlay {
             if authVM.loadingAnimation {
                 ProgressView()
@@ -150,6 +196,13 @@ struct Register: View {
             }
         }
         .alert(authVM.errorMessage, isPresented: $authVM.showError, actions: {})
+        .toolbar(.hidden)
+    }
+    
+    func disableFocusedField() {
+        withAnimation(.easeInOut) {
+            focusedField = nil
+        }
     }
 }
 

@@ -9,6 +9,9 @@ import SwiftUI
 import PhotosUI
 
 struct AddCardView: View {
+    @EnvironmentObject var authVM: AuthViewModel
+    @EnvironmentObject var navVM: NavigationViewModel
+    
     @State private var color: Color = Color("pri")
     @State private var title = ""
     @State private var description = ""
@@ -148,7 +151,14 @@ struct AddCardView: View {
                 
                 // Post Card
                 Button {
-                    
+                    Task {
+                        guard let data else { throw URLError(.cannotOpenFile)}
+                        do {
+                            try await authVM.postCardToFirestore(CardItem(color: color, title: title, description: description, image: data))
+                        } catch {
+                            print(error)
+                        }
+                    }
                 } label: {
                     Text("Post the Card")
                         .font(.title)
@@ -198,6 +208,7 @@ struct AddCardView_Previews: PreviewProvider {
     static var previews: some View {
         TabManager()
             .environmentObject(NavigationViewModel())
+            .environmentObject(AuthViewModel())
     }
 }
 

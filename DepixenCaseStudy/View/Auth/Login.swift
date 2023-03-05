@@ -13,6 +13,12 @@ struct Login: View {
     @EnvironmentObject var authVM: AuthViewModel
     @EnvironmentObject var navVM: NavigationViewModel
     
+    enum FocusField: Hashable {
+        case email, password
+    }
+    
+    @FocusState private var focusedField: FocusField?
+    
     var body: some View {
         
         NavigationView {
@@ -27,11 +33,15 @@ struct Login: View {
                 .font(.largeTitle).bold()
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.top)
+                .onTapGesture {
+                    disableFocusedField()
+                }
                 
                 VStack(spacing: 40) {
                     CustomTextField(image: "envelope", placeholder: "email", text: $email, isSecure: false, textContentType: .emailAddress)
-                    
+                        .focused($focusedField, equals: .email)
                     CustomTextField(image: "lock", placeholder: "password", text: $password, isSecure: true, textContentType: nil)
+                        .focused($focusedField, equals: .password)
                 }
                 .padding([.horizontal, .top], 32)
                 
@@ -73,6 +83,7 @@ struct Login: View {
                 
                 Spacer()
                 
+                #warning("When keyboard is enabled, if you go to register and turn back, this stays above.")
                 NavigationLink {
                     Register()
                 } label: {
@@ -85,24 +96,32 @@ struct Login: View {
                     .foregroundColor(primaryColor)
                 }
             }
+            .background(content: {
+                Color.white.ignoresSafeArea()
+                    .onTapGesture {
+                        disableFocusedField()
+                    }
+            })
             .onAppear {
                 authVM.setDirectLogin(false)
                 navVM.disableOnboarding()
             }
             .padding()
-            .background(Color("bg"))
             .overlay {
                 if authVM.loadingAnimation {
                     ProgressView()
                         .transition(AnyTransition.opacity.animation(.easeInOut))
                 }
             }
-            //.padding(.top, -90) // Had to do it.
             .alert(authVM.errorMessage, isPresented: $authVM.showError, actions: {})
         }
         .toolbar(.hidden)
-        
-        
+    }
+    
+    func disableFocusedField() {
+        withAnimation(.easeInOut) {
+            focusedField = nil
+        }
     }
 }
 

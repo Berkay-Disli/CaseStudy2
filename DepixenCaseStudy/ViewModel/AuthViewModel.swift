@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Foundation
 import Firebase
 import FirebaseStorage
 import UIKit
@@ -164,5 +163,51 @@ class AuthViewModel: ObservableObject {
     
     func setDirectLogin(_ bool: Bool) {
         directLogin = bool
+    }
+    
+    // MARK: ------------- Data Functions -----------------
+    
+    // Posting the card item to firestore
+    func postCardToFirestore(_ cardItem: CardItem) async throws {
+        guard let displayName = Auth.auth().currentUser?.displayName else { return }
+        
+        let date = Date()
+        let df = DateFormatter()
+        df.dateStyle = DateFormatter.Style.short
+        df.timeStyle = DateFormatter.Style.short
+        
+        do {
+            let imgUrl = try await uploadImageToStorage(dataForImage: cardItem.image)
+            
+            let postData = ["color": cardItem.color.hashValue, "title": cardItem.title, "description": cardItem.description, "image": imgUrl, "author": displayName] as [String:Any]
+            
+            try await Firestore.firestore().collection("posts").document(df.string(from: date)).setData(postData)
+            
+        } catch {
+            print(error)
+            throw error
+        }
+    }
+    #warning("IMPORTANT: Date formatter uses "/" and it makes firestore create new documents. FIX IT!)
+    private func uploadImageToStorage(dataForImage: Data) async throws -> String {
+        let date = Date()
+        let df = DateFormatter()
+        df.dateStyle = DateFormatter.Style.short
+        df.timeStyle = DateFormatter.Style.short
+        
+        let ref = Storage.storage().reference(withPath: "posts/\(df.string(from: date)).jpg")
+        guard let dataToImage = UIImage(data: dataForImage) else { throw URLError(.cannotCreateFile)}
+        guard let imageData = dataToImage.jpegData(compressionQuality: 0.5) else { throw URLError(.badURL)}
+        
+        do {
+            let _ = try await ref.putDataAsync(imageData)
+            let result = try await ref.downloadURL()
+            //let url = result.downloadURL
+            
+            return result.absoluteString
+        } catch {
+            print(error.localizedDescription)
+            throw error
+        }
     }
 }

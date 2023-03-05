@@ -18,6 +18,7 @@ struct Home: View {
     
     @State private var expandCard = false
     
+    /*
     let cardItems: [CardItem] = [.init(color: .purple, title: "Item 1", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in.", image: "try1", author: "author1"),
                                  .init(color: .purple, title: "Item 2", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in.", image: "try2", author: "author2"),
                                  .init(color: .purple, title: "Item 3", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in.", image: "try3", author: "author3"),
@@ -30,6 +31,7 @@ struct Home: View {
                                  .init(color: .purple, title: "Item 4", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in.", image: "try4", author: "author4"),
                                  .init(color: .purple, title: "Item 5", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in.", image: "try5", author: "author5"),
                                  .init(color: .purple, title: "Item 6", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in.", image: "try6", author: "author6")]
+    */
     
     var body: some View {
         NavigationView {
@@ -39,13 +41,12 @@ struct Home: View {
                         HeaderProfilesView()
                         
                         Divider()
-                        
+                        /*
                         LazyVGrid(columns: navVM.gridChoice == .twoColumns ? twoColumns:threeColumns, spacing: 12) {
                             ForEach(cardItems.indices, id:\.self) { item in
-                                #warning("read below")
-                                /// On tap gesture, create a bigger view that shows the same card but the size if bigger.
-                                /// Make it on another swift file for easy reading.
-                                /// Establish a smooth expanding view animation using matched geometry effect.
+                                /// On tap gesture, create a bigger view that shows the same card but the size if bigger. --CHECK
+                                /// Make it on another swift file for easy reading. --CHECK
+                                /// Establish a smooth expanding view animation using matched geometry effect. --NOT A SOLID CHECK I'M AFRAID...
                                 CardView(color: cardItems[item].color, title: cardItems[item].title, description: cardItems[item].description, image: cardItems[item].image)
                                     .onTapGesture {
                                         //withAnimation(.easeInOut) {
@@ -56,6 +57,7 @@ struct Home: View {
                         }
                         .padding()
                         .padding(.bottom, 46)
+                        */
                     }
                 }
                 
