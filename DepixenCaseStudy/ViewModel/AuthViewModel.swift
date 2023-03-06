@@ -214,6 +214,9 @@ class AuthViewModel: ObservableObject {
     
     func postCardToFirestore(_ cardItem: CardItem) async throws {
         guard let displayName = Auth.auth().currentUser?.displayName else { return }
+        await MainActor.run(body: {
+            loadingAnimation = true
+        })
         let postPath = givePostPathByDate()
         
         do {
@@ -225,6 +228,9 @@ class AuthViewModel: ObservableObject {
             
         } catch {
             print(error)
+            await MainActor.run(body: {
+                loadingAnimation = false
+            })
             throw error
         }
     }

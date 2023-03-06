@@ -21,7 +21,6 @@ struct Home: View {
     @State private var expandCard = false
     
     var body: some View {
-        #warning("on appear, its sluggish. give frames to views")
         NavigationView {
             ZStack(content: {
                 ScrollView {

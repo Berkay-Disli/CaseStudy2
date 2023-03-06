@@ -151,14 +151,16 @@ struct AddCardView: View {
                 
                 // Post Card
                 Button {
-                    #warning("when tapped, make a progress view. After finished get back to home view.")
                     Task {
                         guard let data else { throw URLError(.cannotOpenFile)}
                         do {
                             try await authVM.postCardToFirestore(CardItem(color: color, title: title, description: description, data: data, author: authVM.userSession?.displayName ?? "", image: nil))
+                            try await authVM.getCardsFromFirestore()
+                            navVM.changeNavigationTab(.home)
                         } catch {
                             print(error)
                         }
+                        
                     }
                 } label: {
                     Text("Post the Card")
@@ -169,6 +171,12 @@ struct AddCardView: View {
                 
                 Spacer()
             }
+            .overlay(content: {
+                if authVM.loadingAnimation {
+                    ProgressView()
+                        .transition(.opacity.animation(.easeInOut))
+                }
+            })
             .padding(.horizontal)
             .padding(.bottom, 50)
             .ignoresSafeArea(.keyboard, edges: .bottom)
