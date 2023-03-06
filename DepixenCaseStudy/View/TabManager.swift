@@ -49,7 +49,10 @@ struct TabManager: View {
                             }
                         }
                     }
+                    .edgesIgnoringSafeArea(.bottom)
                     .background(.regularMaterial)
+                    .transition(.move(edge: .bottom).animation(.easeInOut(duration: 0.25)))
+                    .zIndex(10)
                 }
                 
                 

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2303E0D629B297BA00775074 /* HeaderProfilesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2303E0D529B297BA00775074 /* HeaderProfilesView.swift */; };
+		2329D44E29B6A73200AB0408 /* CaseStudyInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2329D44D29B6A73200AB0408 /* CaseStudyInfoView.swift */; };
 		233F31E929B3E9F300CA060C /* PresentingCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233F31E829B3E9F300CA060C /* PresentingCardView.swift */; };
 		233F31EC29B3F4E300CA060C /* GlassmorphismEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233F31EB29B3F4E300CA060C /* GlassmorphismEffect.swift */; };
 		236D243C29B5D14C000E06B4 /* HEXColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236D243B29B5D14C000E06B4 /* HEXColor.swift */; };
@@ -40,6 +41,7 @@
 
 /* Begin PBXFileReference section */
 		2303E0D529B297BA00775074 /* HeaderProfilesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderProfilesView.swift; sourceTree = "<group>"; };
+		2329D44D29B6A73200AB0408 /* CaseStudyInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseStudyInfoView.swift; sourceTree = "<group>"; };
 		233F31E829B3E9F300CA060C /* PresentingCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentingCardView.swift; sourceTree = "<group>"; };
 		233F31EB29B3F4E300CA060C /* GlassmorphismEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassmorphismEffect.swift; sourceTree = "<group>"; };
 		236D243B29B5D14C000E06B4 /* HEXColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HEXColor.swift; sourceTree = "<group>"; };
@@ -83,6 +85,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2329D44C29B6A71D00AB0408 /* CaseStudyViews */ = {
+			isa = PBXGroup;
+			children = (
+				2329D44D29B6A73200AB0408 /* CaseStudyInfoView.swift */,
+			);
+			path = CaseStudyViews;
+			sourceTree = "<group>";
+		};
 		233F31EA29B3F4CC00CA060C /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -182,6 +192,7 @@
 				23BA251E29B2542F005E9022 /* Home.swift */,
 				239CEEE829B35D3300A78DEA /* AddCardView.swift */,
 				23BA252229B254C5005E9022 /* Settings.swift */,
+				2329D44C29B6A71D00AB0408 /* CaseStudyViews */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -287,6 +298,7 @@
 				239D0C0129B4D3F3000017E0 /* Login.swift in Sources */,
 				239D0C0529B4D431000017E0 /* AuthViewModel.swift in Sources */,
 				23BA252529B254CE005E9022 /* TabManager.swift in Sources */,
+				2329D44E29B6A73200AB0408 /* CaseStudyInfoView.swift in Sources */,
 				23BA250C29B25392005E9022 /* ContentView.swift in Sources */,
 				23BA251F29B2542F005E9022 /* Home.swift in Sources */,
 				23BA252929B25627005E9022 /* NavigationViewModel.swift in Sources */,
