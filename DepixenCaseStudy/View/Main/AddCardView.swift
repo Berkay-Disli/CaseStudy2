@@ -74,12 +74,14 @@ struct AddCardView: View {
                                             .font(.body)
                                             .foregroundColor(.gray)
                                             .disabled(true)
+                                            .autocorrectionDisabled()
                                             
                                 }
                                 TextEditor(text: $description)
                                     .font(.body)
                                     .opacity(self.description.isEmpty ? 0.25 : 1)
                                     .focused($focusedField, equals: .description)
+                                    .autocorrectionDisabled()
                             }
                             .overlay(content: {
                                 RoundedRectangle(cornerRadius: 10).stroke(Color(uiColor: .lightGray))
@@ -146,8 +148,6 @@ struct AddCardView: View {
                         .vAlign(.top)
                         .padding([.horizontal, .top])
                     }
-                
-                
                 
                 // Post Card
                 Button {
