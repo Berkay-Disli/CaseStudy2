@@ -228,11 +228,12 @@ class AuthViewModel: ObservableObject {
             
         } catch {
             print(error)
-            await MainActor.run(body: {
-                loadingAnimation = false
-            })
             throw error
         }
+        
+        await MainActor.run(body: {
+            loadingAnimation = false
+        })
     }
     
     private func uploadImageToStorage(dataForImage: Data, postPath: String) async throws -> String {
