@@ -18,7 +18,9 @@ class AuthViewModel: ObservableObject {
     @Published var showError = false
     @Published var errorMessage = ""
     @Published var directLogin = true
+    
     @Published var cardsList: [CardItem] = []
+    @Published var usersList: [AppUser] = []
     
     init() {
         self.userSession = Auth.auth().currentUser
@@ -46,7 +48,7 @@ class AuthViewModel: ObservableObject {
             let user = result.user
             // create a change request for giving the user a username
             let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
-            changeRequest?.displayName = username
+            changeRequest?.displayName = fullname
             try await changeRequest?.commitChanges()
             
             // continue with uploaduserinfowithpicture
@@ -141,6 +143,31 @@ class AuthViewModel: ObservableObject {
         }
     }
     
+    func getAllUsers() async throws {
+        do {
+            let snapshot = try await Firestore.firestore().collection("users").getDocuments()
+            await MainActor.run(body: {
+                self.usersList.removeAll(keepingCapacity: false)
+            })
+
+            for document in snapshot.documents {
+                guard let displayName = document.get("fullname") as? String else { return }
+                guard let email = document.get("email") as? String else { return }
+                guard let profilePicURLString = document.get("profilePicUrl") as? String else { return }
+                let userToAdd = AppUser(displayName: displayName, email: email, profilePicURLString: profilePicURLString)
+                
+                await MainActor.run(body: {
+                    self.usersList.append(userToAdd)
+                })
+            }
+            await MainActor.run(body: {
+                self.usersList.reverse()
+            })
+        } catch {
+            
+        }
+    }
+    
     func setError(_ error: Error) async {
         await MainActor.run(body: {
             errorMessage = error.localizedDescription
@@ -159,6 +186,10 @@ class AuthViewModel: ObservableObject {
     func getCardsFromFirestore() async throws {
         do {
             let snapshot = try await Firestore.firestore().collection("posts").getDocuments()
+            await MainActor.run(body: {
+                self.cardsList.removeAll(keepingCapacity: false)
+            })
+            
             for document in snapshot.documents {
                 guard let hex = document.get("color") as? String else { return }
                 guard let title = document.get("title") as? String else { return }
@@ -168,8 +199,13 @@ class AuthViewModel: ObservableObject {
                 
                 let cardToAdd = CardItem(color: Color(hex: hex) ?? .black, title: title, description: description, data: Data(), author: author, image: image)
                 
-                self.cardsList.append(cardToAdd)
+                await MainActor.run(body: {
+                    self.cardsList.append(cardToAdd)
+                })
             }
+            await MainActor.run(body: {
+                self.cardsList.reverse()
+            })
         } catch {
             print(error.localizedDescription)
             throw error
@@ -223,3 +259,5 @@ class AuthViewModel: ObservableObject {
         return pathToPost
     }
 }
+
+#warning("create a firebase manager")

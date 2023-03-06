@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct CardView: View {
     @EnvironmentObject var navVM: NavigationViewModel
@@ -39,7 +40,7 @@ struct CardView: View {
                         Rectangle().colorInvert()
                             .frame(height: navVM.gridChoice == .twoColumns ? 70:48)
                             .overlay(alignment: .topLeading, content: {
-                                Text("ahjkdka akjsd ajkdkajkds jasdk ajkdslasd")
+                                Text(description)
                                     .font(.system(size: navVM.gridChoice == .twoColumns ? 13:11))
                             })
                             .padding(.horizontal, 8)
@@ -47,7 +48,7 @@ struct CardView: View {
                         Divider()
                             .padding(.vertical, navVM.gridChoice == .twoColumns ? 4:1)
                         
-                        Image(image)
+                        KFImage(URL(string: image))
                             .resizable()
                             .scaledToFill()
                             .frame(width: navVM.gridChoice == .twoColumns ? 160:100, height: navVM.gridChoice == .twoColumns ? 130:78)

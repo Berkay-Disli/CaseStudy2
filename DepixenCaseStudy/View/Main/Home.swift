@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct Home: View {
     @EnvironmentObject var navVM: NavigationViewModel
@@ -32,12 +33,10 @@ struct Home: View {
                             ForEach(authVM.cardsList.indices, id:\.self) { item in
                                 /// On tap gesture, create a bigger view that shows the same card but the size if bigger. --CHECK
                                 /// Make it on another swift file for easy reading. --CHECK
-                                /// Establish a smooth expanding view animation using matched geometry effect. --NOT A SOLID CHECK I'M AFRAID...
+                                /// Establish a smooth expanding view animation using matched geometry effect. --NOT A SOLID CHECK..
                                 CardView(color: authVM.cardsList[item].color, title: authVM.cardsList[item].title, description: authVM.cardsList[item].description, image: authVM.cardsList[item].image ?? "", author: authVM.cardsList[item].author)
                                     .onTapGesture {
-                                        //withAnimation(.easeInOut) {
-                                            expandCard = true
-                                        //}
+                                        expandCard = true
                                     }
                             }
                         }
@@ -50,6 +49,7 @@ struct Home: View {
                     Task {
                         do {
                             try await authVM.getCardsFromFirestore()
+                            try await authVM.getAllUsers()
                         } catch {
                             print(error)
                         }
@@ -91,13 +91,22 @@ struct Home: View {
                 }
                 
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Circle().stroke(.pink, lineWidth: 2)
-                        .frame(width: 25)
-                        .overlay {
-                            Image(systemName: "person")
-                                .font(.system(size: 10))
-                                .foregroundColor(.pink)
+                    HStack {
+                        KFImage(authVM.userProfileImageUrl)
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 25)
+                            .clipped()
+                            .clipShape(Circle())
+                            .overlay {
+                                Circle().stroke(.pink, lineWidth: 1.5)
                         }
+                        
+                        Text(authVM.userSession?.displayName ?? "")
+                            .font(.callout)
+                    }
+                      
+                        
                 }
             }
         }

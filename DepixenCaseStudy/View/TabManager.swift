@@ -54,6 +54,11 @@ struct TabManager: View {
                 
                 
             }
+            .onAppear(perform: {
+                Task {
+                    try? await authVM.getUserInfoAsync()
+                }
+            })
             .ignoresSafeArea(.keyboard, edges: .bottom)
         }
         

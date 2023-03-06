@@ -6,17 +6,28 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct HeaderProfilesView: View {
+    @EnvironmentObject var navVM: NavigationViewModel
+    @EnvironmentObject var authVM: AuthViewModel
+    
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             LazyHStack(spacing: 16) {
-                ForEach(1...15, id:\.self) { item in
+                ForEach(authVM.usersList) { user in
                     VStack(spacing: 6) {
-                        Circle().stroke(Color("pri"), lineWidth: 2.5)
+                        KFImage(URL(string: user.profilePicURLString))
+                            .resizable()
                             .frame(width: 60, height: 60)
+                            .scaledToFill()
+                            .clipped()
+                            .clipShape(Circle())
+                            .overlay {
+                                Circle().stroke(Color("pri"), lineWidth: 2.5)
+                            }
                         
-                        Text("User: \(item)")
+                        Text(user.displayName)
                             .font(.system(size: 13))
                     }
                 }
@@ -31,5 +42,6 @@ struct HeaderProfilesView_Previews: PreviewProvider {
     static var previews: some View {
         TabManager()
             .environmentObject(NavigationViewModel())
+            .environmentObject(AuthViewModel())
     }
 }
