@@ -9,6 +9,7 @@ import Foundation
 import Firebase
 import FirebaseStorage
 import UIKit
+import SwiftUI
 
 class AuthViewModel: ObservableObject {
     @Published var userSession: FirebaseAuth.User?
@@ -17,6 +18,7 @@ class AuthViewModel: ObservableObject {
     @Published var showError = false
     @Published var errorMessage = ""
     @Published var directLogin = true
+    @Published var cardsList: [CardItem] = []
     
     init() {
         self.userSession = Auth.auth().currentUser
@@ -147,53 +149,52 @@ class AuthViewModel: ObservableObject {
         })
     }
     
-    func deleteUser() async throws {
-        guard let uid = userSession?.uid else { return }
-        
-        let ref = Storage.storage().reference(withPath: "userImages/\(uid).jpg")
-        do {
-            try await ref.delete()
-            try await Firestore.firestore().collection("users").document(uid).delete()
-            try await Auth.auth().currentUser?.delete()
-        } catch {
-            print(error.localizedDescription)
-            throw error
-        }
-    }
-    
+    // Onboarding View Timing
     func setDirectLogin(_ bool: Bool) {
         directLogin = bool
     }
     
     // MARK: ------------- Data Functions -----------------
     
-    // Posting the card item to firestore
+    func getCardsFromFirestore() async throws {
+        do {
+            let snapshot = try await Firestore.firestore().collection("posts").getDocuments()
+            for document in snapshot.documents {
+                guard let hex = document.get("color") as? String else { return }
+                guard let title = document.get("title") as? String else { return }
+                guard let description = document.get("description") as? String else { return }
+                guard let image = document.get("image") as? String else { return }
+                guard let author = document.get("author") as? String else { return }
+                
+                let cardToAdd = CardItem(color: Color(hex: hex) ?? .black, title: title, description: description, data: Data(), author: author, image: image)
+                
+                self.cardsList.append(cardToAdd)
+            }
+        } catch {
+            print(error.localizedDescription)
+            throw error
+        }
+    }
+    
     func postCardToFirestore(_ cardItem: CardItem) async throws {
         guard let displayName = Auth.auth().currentUser?.displayName else { return }
+        let postPath = givePostPathByDate()
         
         do {
-            let imgUrl = try await uploadImageToStorage(dataForImage: cardItem.image)
+            let imgUrl = try await uploadImageToStorage(dataForImage: cardItem.data, postPath: postPath)
             guard let hexColorValue = cardItem.color.toHex() else { return }
             let postData = ["color": hexColorValue, "title": cardItem.title, "description": cardItem.description, "image": imgUrl, "author": displayName] as [String:Any]
             
-            try await Firestore.firestore().collection("posts").document(givePostPathByDate()).setData(postData)
+            try await Firestore.firestore().collection("posts").document(postPath).setData(postData)
             
         } catch {
             print(error)
             throw error
         }
     }
-    #warning("IMPORTANT: Date formatter uses / and it makes firestore create new documents. FIX IT!")
-    /*
-     let myString = "aaaaaaaabbbb"
-     let replaced = myString.replacingOccurrences(of: "bbbb", with: "")
-     ------
-     var str = "An apple a day, keeps doctor away!"
-     let removeCharacters: Set<Character> = ["p", "y"]
-     str.removeAll(where: { removeCharacters.contains($0) } )
-     */
-    private func uploadImageToStorage(dataForImage: Data) async throws -> String {
-        let ref = Storage.storage().reference(withPath: "posts/\(givePostPathByDate()).jpg")
+    
+    private func uploadImageToStorage(dataForImage: Data, postPath: String) async throws -> String {
+        let ref = Storage.storage().reference(withPath: "posts/\(postPath).jpg")
         guard let dataToImage = UIImage(data: dataForImage) else { throw URLError(.cannotCreateFile)}
         guard let imageData = dataToImage.jpegData(compressionQuality: 0.5) else { throw URLError(.badURL)}
         

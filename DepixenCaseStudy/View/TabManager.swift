@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TabManager: View {
     @EnvironmentObject var navVM: NavigationViewModel
+    @EnvironmentObject var authVM: AuthViewModel
     
     var body: some View {
         NavigationView {
@@ -63,6 +64,7 @@ struct TabManager_Previews: PreviewProvider {
     static var previews: some View {
         TabManager()
             .environmentObject(NavigationViewModel())
+            .environmentObject(AuthViewModel())
     }
 }
 

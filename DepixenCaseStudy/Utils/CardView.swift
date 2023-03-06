@@ -9,10 +9,12 @@ import SwiftUI
 
 struct CardView: View {
     @EnvironmentObject var navVM: NavigationViewModel
+    @EnvironmentObject var authVM: AuthViewModel
     let color: Color
     let title: String
     let description: String
     let image: String
+    let author: String
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -22,7 +24,7 @@ struct CardView: View {
                 .offset(y: navVM.gridChoice == .twoColumns ? 20:25)
                 .padding(.top, navVM.gridChoice == .twoColumns ? -20:-25)
             
-            RoundedRectangle(cornerRadius: 10).stroke(Color("pri"), lineWidth: 2)
+            RoundedRectangle(cornerRadius: 10).stroke(color, lineWidth: 2)
                 .background(RoundedRectangle(cornerRadius: 10).fill(.white))
                 .frame(height: navVM.gridChoice == .twoColumns ? 260:170)
                 .overlay(alignment: .topLeading) {
@@ -30,7 +32,7 @@ struct CardView: View {
                         Text(title)
                             .font(.system(size: navVM.gridChoice == .twoColumns ? 15:14))
                             .fontWeight(.medium)
-                            .foregroundColor(Color("pri"))
+                            .foregroundColor(color)
                             .padding([.leading, .top], 7)
                             .padding(.bottom, navVM.gridChoice == .twoColumns ? 4:1)
                         
@@ -55,7 +57,7 @@ struct CardView: View {
                             .hAlign(.center)
                             .padding(.top, 4)
                         
-                        Text("author")
+                        Text(author)
                             .font(.system(size: navVM.gridChoice == .twoColumns ? 9:7))
                             .foregroundColor(.gray)
                             .vAlign(.center)
@@ -76,5 +78,6 @@ struct CardView_Previews: PreviewProvider {
     static var previews: some View {
         TabManager()
             .environmentObject(NavigationViewModel())
+            .environmentObject(AuthViewModel())
     }
 }

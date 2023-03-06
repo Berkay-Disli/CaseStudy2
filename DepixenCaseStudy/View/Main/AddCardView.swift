@@ -154,7 +154,7 @@ struct AddCardView: View {
                     Task {
                         guard let data else { throw URLError(.cannotOpenFile)}
                         do {
-                            try await authVM.postCardToFirestore(CardItem(color: color, title: title, description: description, image: data))
+                            try await authVM.postCardToFirestore(CardItem(color: color, title: title, description: description, data: data, author: authVM.userSession?.displayName ?? "", image: nil))
                         } catch {
                             print(error)
                         }

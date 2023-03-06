@@ -13,5 +13,7 @@ struct CardItem: Identifiable {
     let color: Color
     let title: String
     let description: String
-    let image: Data
+    let data: Data
+    let author: String
+    let image: String?
 }
