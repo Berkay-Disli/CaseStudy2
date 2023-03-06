@@ -57,7 +57,14 @@ struct TabManager: View {
             .onAppear(perform: {
                 Task {
                     try? await authVM.getUserInfoAsync()
+                    do {
+                        try await authVM.getCardsFromFirestore()
+                        try await authVM.getAllUsers()
+                    } catch {
+                        print(error)
+                    }
                 }
+                
             })
             .ignoresSafeArea(.keyboard, edges: .bottom)
         }

@@ -151,6 +151,7 @@ struct AddCardView: View {
                 
                 // Post Card
                 Button {
+                    #warning("when tapped, make a progress view. After finished get back to home view.")
                     Task {
                         guard let data else { throw URLError(.cannotOpenFile)}
                         do {

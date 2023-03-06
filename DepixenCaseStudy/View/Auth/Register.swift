@@ -76,9 +76,11 @@ struct Register: View {
                                         .stroke(LinearGradient(colors: [primaryColor, primaryColor, primaryColor, .black], startPoint: .top, endPoint: .bottom), lineWidth: 3)
                                         .frame(width: 140, height: 140)
                                 }
+                            /*
                                 .onTapGesture {
                                     disableFocusedField()
                                 }
+                             */
                         }.onChange(of: selectedItem) { newValue in
                             guard let item = selectedItem.first else { return }
                             item.loadTransferable(type: Data.self) { result in
@@ -105,9 +107,11 @@ struct Register: View {
                                     .frame(width: 140, height: 140)
                             }
                             .frame(height: 140)
+                        /*
                             .onTapGesture {
                                 disableFocusedField()
                             }
+                         */
                     }.onChange(of: selectedItem) { newValue in
                         guard let item = selectedItem.first else { return }
                         item.loadTransferable(type: Data.self) { result in

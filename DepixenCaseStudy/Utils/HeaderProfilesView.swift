@@ -34,6 +34,7 @@ struct HeaderProfilesView: View {
             }
             .padding([.horizontal, .top])
             .padding(.bottom, 12)
+            .frame(height: 100)
         }
     }
 }

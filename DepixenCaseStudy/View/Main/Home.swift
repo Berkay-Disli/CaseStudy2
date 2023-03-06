@@ -21,6 +21,7 @@ struct Home: View {
     @State private var expandCard = false
     
     var body: some View {
+        #warning("on appear, its sluggish. give frames to views")
         NavigationView {
             ZStack(content: {
                 ScrollView {
@@ -41,11 +42,10 @@ struct Home: View {
                             }
                         }
                         .padding()
-                        .padding(.bottom, 46)
-                        
+                        .padding(.bottom, 46)                        
                     }
                 }
-                .onAppear {
+                .refreshable {
                     Task {
                         do {
                             try await authVM.getCardsFromFirestore()
@@ -55,7 +55,6 @@ struct Home: View {
                         }
                     }
                 }
-                
                 if expandCard {
                         Rectangle().fill(.clear)
                             .ignoresSafeArea()
