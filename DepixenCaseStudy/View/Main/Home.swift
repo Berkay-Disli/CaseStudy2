@@ -40,7 +40,6 @@ struct Home: View {
                                             authVM.setCardToShow(authVM.cardsList[item])
                                         }
                                         showSheet.toggle()
-                                        
                                     }
                             }
                         }
@@ -77,7 +76,6 @@ struct Home: View {
                         Image(systemName: "rectangle.grid.\(navVM.gridChoice == .twoColumns ? 2:3)x2.fill")
                             .foregroundColor(Color("pri"))
                     }
-                    
                 }
                 
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -95,8 +93,6 @@ struct Home: View {
                         Text(authVM.userSession?.displayName ?? "")
                             .font(.callout)
                     }
-                      
-                        
                 }
             }
         }
