@@ -67,7 +67,6 @@ struct AddCardView: View {
                             }
                             
                             // TextEditor
-                            #warning("not tappable in actual device sometimes? why")
                             ZStack {
                                 if self.description.isEmpty {
                                     TextEditor(text: .constant("New Description"))

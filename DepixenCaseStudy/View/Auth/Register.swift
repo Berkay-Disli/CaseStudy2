@@ -62,7 +62,6 @@ struct Register: View {
             }
             
             VStack(spacing: 40) {
-                #warning("Make so that the user can not register without a profile picture?")
                 if let data {
                     if let image = UIImage(data: data) {
                         PhotosPicker(selection: $selectedItem, maxSelectionCount: 1, matching: .images) {
@@ -164,10 +163,11 @@ struct Register: View {
                     .foregroundColor(.white)
                     .frame(maxWidth: .infinity, alignment: .center)
                     .frame(height: 50)
-                    .background(primaryColor)
+                    .background(data == nil ? .gray:primaryColor)
                     .clipShape(Capsule())
                     .shadow(color: .gray.opacity(0.2), radius: 5, x: 0, y: 5)
                     .padding(.horizontal).padding(.top, 24)
+                    .disabled(data == nil ? true:false)
             }
             
             

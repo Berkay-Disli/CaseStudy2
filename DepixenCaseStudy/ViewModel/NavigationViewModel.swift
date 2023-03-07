@@ -13,6 +13,7 @@ class NavigationViewModel: ObservableObject {
     @Published private(set) var navBarIsShown: Bool = true
     @Published private(set) var gridChoice: GridChoices = .twoColumns
     
+    
     init() {
         
     }

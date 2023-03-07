@@ -22,6 +22,8 @@ class AuthViewModel: ObservableObject {
     @Published var cardsList: [CardItem] = []
     @Published var usersList: [AppUser] = []
     
+    @Published var cardToShow: CardItem?
+    
     init() {
         self.userSession = Auth.auth().currentUser
     }
@@ -264,6 +266,14 @@ class AuthViewModel: ObservableObject {
         pathToPost.removeAll(where: { removeCharacters.contains($0) } )
         
         return pathToPost
+    }
+    
+    func setCardToShow(_ cardItem: CardItem) {
+        self.cardToShow = cardItem
+    }
+    
+    func clearCardToShow() {
+        self.cardToShow = nil
     }
 }
 

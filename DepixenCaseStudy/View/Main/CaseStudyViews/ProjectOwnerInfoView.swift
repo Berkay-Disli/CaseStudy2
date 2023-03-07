@@ -42,7 +42,6 @@ struct ProjectOwnerInfoView: View {
                             
                         }
                     }
-                    .hAlign(.center)
                     
                 }
                 

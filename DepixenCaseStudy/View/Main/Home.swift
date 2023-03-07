@@ -18,7 +18,7 @@ struct Home: View {
                                     GridItem(.flexible(), spacing: 12),
                                     GridItem(.flexible())]
     
-    @State private var expandCard = false
+    @State private var showSheet = false
     
     var body: some View {
         NavigationView {
@@ -36,7 +36,11 @@ struct Home: View {
                                 /// Establish a smooth expanding view animation using matched geometry effect. --NOT A SOLID CHECK..
                                 CardView(color: authVM.cardsList[item].color, title: authVM.cardsList[item].title, description: authVM.cardsList[item].description, image: authVM.cardsList[item].image ?? "", author: authVM.cardsList[item].author)
                                     .onTapGesture {
-                                        expandCard = true
+                                        withAnimation(.easeInOut) {
+                                            authVM.setCardToShow(authVM.cardsList[item])
+                                        }
+                                        showSheet.toggle()
+                                        
                                     }
                             }
                         }
@@ -54,25 +58,13 @@ struct Home: View {
                         }
                     }
                 }
-                if expandCard {
-                        Rectangle().fill(.clear)
-                            .ignoresSafeArea()
-                            .backgroundBlur(radius: 3)
-                            .animation(.easeInOut, value: expandCard)
-                            .transition(.opacity.animation(.easeInOut(duration: 0.25)))
-                            .onTapGesture {
-                                expandCard = false
-                            }
-                            .zIndex(1)
-                         
-                        PresentingCardView(color: .pink, title: "Presenting", description: "Presenting card description is here! Hello there.", image: "try8", expandCard: $expandCard)
-                            .offset(y: -40)
-                            .transition(.scale.animation(.easeInOut(duration: 0.25)))
-                            .zIndex(2)
-                    
-                }
             })
-            
+            .sheet(isPresented: $showSheet) {
+                if let card = authVM.cardToShow {
+                    PresentingCardView(color: card.color, title: card.title, description: card.description, image: card.image ?? "", author: card.author)
+                        .presentationDetents([.height(400), .height(500)])
+                }
+            }
             .navigationTitle("Home")
             .toolbar {
                 // To add another function, i could use this area as well. for example:
