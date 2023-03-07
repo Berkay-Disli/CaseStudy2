@@ -54,7 +54,7 @@ struct Settings: View {
                     }
                     
                     NavigationLink("Berkay Dişli") {
-                        Text("Berkay Dişli")
+                        ProjectOwnerInfoView()
                     }
                 } header: {
                     Text("APP INFO")

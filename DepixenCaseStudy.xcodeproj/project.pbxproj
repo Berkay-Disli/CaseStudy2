@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2303E0D629B297BA00775074 /* HeaderProfilesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2303E0D529B297BA00775074 /* HeaderProfilesView.swift */; };
+		2321052529B7454B0043343C /* ProjectOwnerInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2321052429B7454B0043343C /* ProjectOwnerInfoView.swift */; };
 		2329D44E29B6A73200AB0408 /* CaseStudyInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2329D44D29B6A73200AB0408 /* CaseStudyInfoView.swift */; };
 		233F31E929B3E9F300CA060C /* PresentingCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233F31E829B3E9F300CA060C /* PresentingCardView.swift */; };
 		233F31EC29B3F4E300CA060C /* GlassmorphismEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233F31EB29B3F4E300CA060C /* GlassmorphismEffect.swift */; };
@@ -41,6 +42,7 @@
 
 /* Begin PBXFileReference section */
 		2303E0D529B297BA00775074 /* HeaderProfilesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderProfilesView.swift; sourceTree = "<group>"; };
+		2321052429B7454B0043343C /* ProjectOwnerInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectOwnerInfoView.swift; sourceTree = "<group>"; };
 		2329D44D29B6A73200AB0408 /* CaseStudyInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseStudyInfoView.swift; sourceTree = "<group>"; };
 		233F31E829B3E9F300CA060C /* PresentingCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentingCardView.swift; sourceTree = "<group>"; };
 		233F31EB29B3F4E300CA060C /* GlassmorphismEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassmorphismEffect.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				2329D44D29B6A73200AB0408 /* CaseStudyInfoView.swift */,
+				2321052429B7454B0043343C /* ProjectOwnerInfoView.swift */,
 			);
 			path = CaseStudyViews;
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 				23BA250C29B25392005E9022 /* ContentView.swift in Sources */,
 				23BA251F29B2542F005E9022 /* Home.swift in Sources */,
 				23BA252929B25627005E9022 /* NavigationViewModel.swift in Sources */,
+				2321052529B7454B0043343C /* ProjectOwnerInfoView.swift in Sources */,
 				236D243C29B5D14C000E06B4 /* HEXColor.swift in Sources */,
 				236D244129B5E8C9000E06B4 /* AppUser.swift in Sources */,
 				239D0C0B29B4DC58000017E0 /* OnboardingView.swift in Sources */,

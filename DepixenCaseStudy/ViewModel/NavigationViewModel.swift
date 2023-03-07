@@ -9,7 +9,7 @@ import Foundation
 
 class NavigationViewModel: ObservableObject {
     @Published var onboarding = true
-    @Published private(set) var selectedTab: Tabs = .settings
+    @Published private(set) var selectedTab: Tabs = .home
     @Published private(set) var navBarIsShown: Bool = true
     @Published private(set) var gridChoice: GridChoices = .twoColumns
     
