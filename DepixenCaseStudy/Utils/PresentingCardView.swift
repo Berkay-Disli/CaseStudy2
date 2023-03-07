@@ -48,7 +48,6 @@ struct PresentingCardView: View {
                     .padding(.vertical, 4)
                 
                 KFImage(URL(string: image))
-                //Image("try6")
                     .resizable()
                     .scaledToFill()
                     .frame(height: 227)

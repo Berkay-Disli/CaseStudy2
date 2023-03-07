@@ -89,7 +89,7 @@ struct Home: View {
                             .clipped()
                             .clipShape(Circle())
                             .overlay {
-                                Circle().stroke(.pink, lineWidth: 1.5)
+                                Circle().stroke(Color("pri"), lineWidth: 1.5)
                         }
                         
                         Text(authVM.userSession?.displayName ?? "")

@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
+import RiveRuntime
 
 struct Login: View {
     @State private var email = ""
     @State private var password = ""
     @EnvironmentObject var authVM: AuthViewModel
     @EnvironmentObject var navVM: NavigationViewModel
+    
+    var loginRiveView = RiveViewModel(fileName: "login")
     
     enum FocusField: Hashable {
         case email, password
@@ -24,6 +27,10 @@ struct Login: View {
         NavigationView {
             let primaryColor = Color("pri")
             VStack {
+                loginRiveView.view()
+                    .frame(height: 200)
+                    .padding(.bottom, -45)
+                
                 //header
                 VStack(alignment: .leading) {
                     Text("Hello.")

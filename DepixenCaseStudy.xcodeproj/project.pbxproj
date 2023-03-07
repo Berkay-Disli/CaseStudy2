@@ -12,6 +12,8 @@
 		2329D44E29B6A73200AB0408 /* CaseStudyInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2329D44D29B6A73200AB0408 /* CaseStudyInfoView.swift */; };
 		233F31E929B3E9F300CA060C /* PresentingCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233F31E829B3E9F300CA060C /* PresentingCardView.swift */; };
 		233F31EC29B3F4E300CA060C /* GlassmorphismEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233F31EB29B3F4E300CA060C /* GlassmorphismEffect.swift */; };
+		2353A12929B7F51200D0EB7A /* login.riv in Resources */ = {isa = PBXBuildFile; fileRef = 2353A12829B7F51200D0EB7A /* login.riv */; };
+		2353A12C29B7F5F200D0EB7A /* RiveRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = 2353A12B29B7F5F200D0EB7A /* RiveRuntime */; };
 		236D243C29B5D14C000E06B4 /* HEXColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236D243B29B5D14C000E06B4 /* HEXColor.swift */; };
 		236D243F29B5E05C000E06B4 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 236D243E29B5E05C000E06B4 /* Kingfisher */; };
 		236D244129B5E8C9000E06B4 /* AppUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236D244029B5E8C9000E06B4 /* AppUser.swift */; };
@@ -46,6 +48,7 @@
 		2329D44D29B6A73200AB0408 /* CaseStudyInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseStudyInfoView.swift; sourceTree = "<group>"; };
 		233F31E829B3E9F300CA060C /* PresentingCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentingCardView.swift; sourceTree = "<group>"; };
 		233F31EB29B3F4E300CA060C /* GlassmorphismEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassmorphismEffect.swift; sourceTree = "<group>"; };
+		2353A12829B7F51200D0EB7A /* login.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = login.riv; sourceTree = "<group>"; };
 		236D243B29B5D14C000E06B4 /* HEXColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HEXColor.swift; sourceTree = "<group>"; };
 		236D244029B5E8C9000E06B4 /* AppUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUser.swift; sourceTree = "<group>"; };
 		239CEEE829B35D3300A78DEA /* AddCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardView.swift; sourceTree = "<group>"; };
@@ -77,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2353A12C29B7F5F200D0EB7A /* RiveRuntime in Frameworks */,
 				236D243F29B5E05C000E06B4 /* Kingfisher in Frameworks */,
 				239D0BFB29B4D362000017E0 /* FirebaseAuth in Frameworks */,
 				239D0BFD29B4D362000017E0 /* FirebaseFirestore in Frameworks */,
@@ -103,6 +107,14 @@
 				236D243B29B5D14C000E06B4 /* HEXColor.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		2353A12729B7F50400D0EB7A /* RiveAssets */ = {
+			isa = PBXGroup;
+			children = (
+				2353A12829B7F51200D0EB7A /* login.riv */,
+			);
+			path = RiveAssets;
 			sourceTree = "<group>";
 		};
 		23BA24FD29B25392005E9022 = {
@@ -132,6 +144,7 @@
 				23BA250929B25392005E9022 /* DepixenCaseStudyApp.swift */,
 				23BA250B29B25392005E9022 /* ContentView.swift */,
 				23BA250D29B25393005E9022 /* Assets.xcassets */,
+				2353A12729B7F50400D0EB7A /* RiveAssets */,
 				23BA250F29B25393005E9022 /* DepixenCaseStudy.entitlements */,
 				239D0BF729B4D2E3000017E0 /* GoogleService-Info.plist */,
 				23BA251029B25393005E9022 /* Preview Content */,
@@ -231,6 +244,7 @@
 				239D0BFC29B4D362000017E0 /* FirebaseFirestore */,
 				239D0BFE29B4D362000017E0 /* FirebaseStorage */,
 				236D243E29B5E05C000E06B4 /* Kingfisher */,
+				2353A12B29B7F5F200D0EB7A /* RiveRuntime */,
 			);
 			productName = DepixenCaseStudy;
 			productReference = 23BA250629B25392005E9022 /* DepixenCaseStudy.app */;
@@ -263,6 +277,7 @@
 			packageReferences = (
 				239D0BF929B4D362000017E0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				236D243D29B5E05C000E06B4 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				2353A12A29B7F5F200D0EB7A /* XCRemoteSwiftPackageReference "rive-ios" */,
 			);
 			productRefGroup = 23BA250729B25392005E9022 /* Products */;
 			projectDirPath = "";
@@ -279,6 +294,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				23BA251229B25393005E9022 /* Preview Assets.xcassets in Resources */,
+				2353A12929B7F51200D0EB7A /* login.riv in Resources */,
 				23BA250E29B25393005E9022 /* Assets.xcassets in Resources */,
 				239D0BF829B4D2E3000017E0 /* GoogleService-Info.plist in Resources */,
 			);
@@ -534,6 +550,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		2353A12A29B7F5F200D0EB7A /* XCRemoteSwiftPackageReference "rive-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/rive-app/rive-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
 		236D243D29B5E05C000E06B4 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
@@ -553,6 +577,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2353A12B29B7F5F200D0EB7A /* RiveRuntime */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2353A12A29B7F5F200D0EB7A /* XCRemoteSwiftPackageReference "rive-ios" */;
+			productName = RiveRuntime;
+		};
 		236D243E29B5E05C000E06B4 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 236D243D29B5E05C000E06B4 /* XCRemoteSwiftPackageReference "Kingfisher" */;
