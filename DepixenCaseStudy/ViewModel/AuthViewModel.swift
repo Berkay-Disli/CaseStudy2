@@ -93,6 +93,10 @@ class AuthViewModel: ObservableObject {
             print(error.localizedDescription)
             throw error
         }
+        
+        await MainActor.run(body: {
+            self.loadingAnimation = false
+        })
     }
     
     
@@ -246,7 +250,6 @@ class AuthViewModel: ObservableObject {
         do {
             let _ = try await ref.putDataAsync(imageData)
             let result = try await ref.downloadURL()
-            //let url = result.downloadURL
             
             return result.absoluteString
         } catch {

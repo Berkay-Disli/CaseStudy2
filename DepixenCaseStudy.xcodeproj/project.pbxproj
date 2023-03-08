@@ -11,7 +11,6 @@
 		2321052529B7454B0043343C /* ProjectOwnerInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2321052429B7454B0043343C /* ProjectOwnerInfoView.swift */; };
 		2329D44E29B6A73200AB0408 /* CaseStudyInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2329D44D29B6A73200AB0408 /* CaseStudyInfoView.swift */; };
 		233F31E929B3E9F300CA060C /* PresentingCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233F31E829B3E9F300CA060C /* PresentingCardView.swift */; };
-		233F31EC29B3F4E300CA060C /* GlassmorphismEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233F31EB29B3F4E300CA060C /* GlassmorphismEffect.swift */; };
 		2353A12929B7F51200D0EB7A /* login.riv in Resources */ = {isa = PBXBuildFile; fileRef = 2353A12829B7F51200D0EB7A /* login.riv */; };
 		2353A12C29B7F5F200D0EB7A /* RiveRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = 2353A12B29B7F5F200D0EB7A /* RiveRuntime */; };
 		236D243C29B5D14C000E06B4 /* HEXColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236D243B29B5D14C000E06B4 /* HEXColor.swift */; };
@@ -47,7 +46,6 @@
 		2321052429B7454B0043343C /* ProjectOwnerInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectOwnerInfoView.swift; sourceTree = "<group>"; };
 		2329D44D29B6A73200AB0408 /* CaseStudyInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseStudyInfoView.swift; sourceTree = "<group>"; };
 		233F31E829B3E9F300CA060C /* PresentingCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentingCardView.swift; sourceTree = "<group>"; };
-		233F31EB29B3F4E300CA060C /* GlassmorphismEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassmorphismEffect.swift; sourceTree = "<group>"; };
 		2353A12829B7F51200D0EB7A /* login.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = login.riv; sourceTree = "<group>"; };
 		236D243B29B5D14C000E06B4 /* HEXColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HEXColor.swift; sourceTree = "<group>"; };
 		236D244029B5E8C9000E06B4 /* AppUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUser.swift; sourceTree = "<group>"; };
@@ -103,7 +101,6 @@
 		233F31EA29B3F4CC00CA060C /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				233F31EB29B3F4E300CA060C /* GlassmorphismEffect.swift */,
 				236D243B29B5D14C000E06B4 /* HEXColor.swift */,
 			);
 			path = Extensions;
@@ -311,7 +308,6 @@
 				23BA252D29B25E70005E9022 /* CardView.swift in Sources */,
 				233F31E929B3E9F300CA060C /* PresentingCardView.swift in Sources */,
 				239CEEE929B35D3300A78DEA /* AddCardView.swift in Sources */,
-				233F31EC29B3F4E300CA060C /* GlassmorphismEffect.swift in Sources */,
 				239D0C0929B4D5C3000017E0 /* CustomTextField.swift in Sources */,
 				23BA252F29B25E7D005E9022 /* CardItem.swift in Sources */,
 				239D0C0129B4D3F3000017E0 /* Login.swift in Sources */,

@@ -140,7 +140,7 @@ struct AddCardView: View {
                             
                             
                             
-                            Text("author")
+                            Text(authVM.userSession?.displayName ?? "")
                                 .font(.system(size: 14))
 
                         }
