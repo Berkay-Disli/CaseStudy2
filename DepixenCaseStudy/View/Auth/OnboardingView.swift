@@ -15,7 +15,7 @@ struct OnboardingView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
             Text("Hey \(fullname)")
-            Text("Welcome to ChatApp")
+            Text("Welcome to the app.")
                 .fontWeight(.medium)
                 .foregroundColor(Color("pri"))
         }
