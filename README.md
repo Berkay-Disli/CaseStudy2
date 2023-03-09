@@ -8,8 +8,8 @@
 
 ## Authentication
 
-<p align="middle">
-    <img src="images/login1.gif" width="15%" height="15%" /> <img src="images/login2.gif" width="15%" height="15%" /> <img src="images/register1.gif" width="15%" height="15%" /> <img src="images/register2.gif" width="15%" height="15%" />
+<p align="left">
+    <img src="images/login1.gif" width="20%" height="20%" /> <img src="images/login2.gif" width="20%" height="20%" /> <img src="images/register1.gif" width="20%" height="20%" /> <img src="images/register2.gif" width="20%" height="20%" />
 </p>
 
 
