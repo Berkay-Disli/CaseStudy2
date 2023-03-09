@@ -1,6 +1,6 @@
 # DEPIXEN - CASE STUDY 
 <p align="middle">
-  <img src="images/CASE.png" width=25% height=25%>
+  <img src="images/CASE.png" width=100% height=100%>
 </p>
 
 **A showcase app for posting cards and displaying them.**
@@ -9,7 +9,7 @@
 ## Authentication
 
 <p align="middle">
-    <img src="images/login1.gif" width="30%" height="30%" /> <img src="images/login2.gif" width="30%" height="30%" /> <img src="images/register1.gif" width="30%" height="30%" /> <img src="images/register2.gif" width="30%" height="30%" />
+    <img src="images/login1.gif" width="15%" height="15%" /> <img src="images/login2.gif" width="15%" height="15%" /> <img src="images/register1.gif" width="15%" height="15%" /> <img src="images/register2.gif" width="15%" height="15%" />
 </p>
 
 
