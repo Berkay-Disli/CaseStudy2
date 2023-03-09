@@ -21,12 +21,12 @@
 
 ## Extra
 <br />
-<p align="middle">
+<p align="left">
     <img src="images/colorpicker.gif" width="22%" height="22%" /><img src="images/settingscase.gif" width="22%" height="22%" /><img src="images/settingslinks.gif" width="22%" height="22%" />
 </p>
 
 
 ## Alerts
-<p align="middle">
+<p align="left">
     <img src="images/alertLogin.gif" width="22%" height="22%" /><img src="images/alertCard.gif" width="22%" height="22%" /> <img src="images/alertSignout.gif" width="22%" height="22%" />
 </p>
